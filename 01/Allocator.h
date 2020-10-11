@@ -15,6 +15,7 @@ protected:
     char *allocPtr;
 };
 
+
 class DebugAllocator : public Allocator {
 public:
     uint64_t getOffset() {

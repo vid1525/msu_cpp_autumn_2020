@@ -25,8 +25,16 @@ int main() {
                 x.makeAllocator(m);
             } else if (type == 1) {
                 uint64_t m;
+                bool nullptr_flag;
+
                 inputFileStream >> m;
-                x.alloc(m);
+                char *ptr = x.alloc(m);
+                outputFileStream >> nullptr_flag;
+                if ((bool)ptr != nullptr_flag) {
+                    std::cerr << std::endl << "Wrong answer: test " << filename << std::endl;
+                    std::cerr << "Pointer which was returned by function alloc() is incorrect" << std::endl;
+                    return 1;
+                }
             } else if (type == 2) {
                 x.reset();
             }

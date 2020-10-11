@@ -8,10 +8,22 @@ public:
     void reset();
     Allocator();
     ~Allocator();
-private:
+
+protected:
     uint64_t allocSize;
     uint64_t offset;
     char *allocPtr;
+};
+
+class DebugAllocator : public Allocator {
+public:
+    uint64_t getOffset() {
+        return offset;
+    }
+
+    uint64_t getAllocSize() {
+        return allocSize;
+    }
 };
 
 #endif

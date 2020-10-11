@@ -4,6 +4,8 @@
 void Allocator::makeAllocator(const uint64_t maxSize) {
     delete [] allocPtr;
     allocPtr = new char[maxSize];
+    allocSize = maxSize;
+    offset = 0;
 }
 
 char *Allocator::alloc(const uint64_t size) {

@@ -1,7 +1,0 @@
-#include <iostream>
-#include "Allocator.h"
-
-int main() {
-
-    return 0;
-}

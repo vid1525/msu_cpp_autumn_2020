@@ -54,5 +54,5 @@ Test mode:
 
     2.
     To test correctness of memory allocation you should launch in terminal:
-        valgrind ./test (if valgrind is installed already)
+        valgrind -q ./test (if valgrind is installed already)
     If valgrind is not installed then you should install it.

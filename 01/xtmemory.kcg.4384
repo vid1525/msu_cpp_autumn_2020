@@ -1,0 +1,490 @@
+# callgrind format
+version: 1
+creator: xtree-1
+pid: 4384
+cmd: ./test
+
+positions: line
+event: curB : currently allocated Bytes
+event: curBk : currently allocated Blocks
+event: totB : total allocated Bytes
+event: totBk : total allocated Blocks
+event: totFdB : total Freed Bytes
+event: totFdBk : total Freed Blocks
+events: curB  curBk  totB  totBk  totFdB  totFdBk 
+fl=(1) UnknownFile???
+fn=(1) UnknownFn???
+0
+cfi=(2) /build/glibc-KRRWSm/glibc-2.29/elf/dl-init.c
+cfn=(2) _dl_init
+calls=0 30
+0 0 0 72704 1 0 0
+fl=(2)
+fn=(2)
+30
+cfi=(2)
+cfn=(3) call_init.part.0
+calls=0 72
+30 0 0 72704 1 0 0
+fl=(2)
+fn=(3)
+72
+cfi=(1)
+cfn=(1)
+calls=0 0
+72 0 0 72704 1 0 0
+fl=(1)
+fn=(1)
+0 0 0 72704 1 0 0
+
+fl=(1)
+fn=(4) main
+0
+cfi=(1)
+cfn=(5) std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode)
+calls=0 0
+0 552 1 552 1 0 0
+fl=(1)
+fn=(5)
+0
+cfi=(1)
+cfn=(6) std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode)
+calls=0 0
+0 552 1 552 1 0 0
+fl=(1)
+fn=(6)
+0
+cfi=(1)
+cfn=(7) std::__basic_file<char>::open(char const*, std::_Ios_Openmode, int)
+calls=0 0
+0 552 1 552 1 0 0
+fl=(1)
+fn=(7)
+0
+cfi=(3) /build/glibc-KRRWSm/glibc-2.29/libio/iofopen.c
+cfn=(8) fopen@@GLIBC_2.2.5
+calls=0 65
+0 552 1 552 1 0 0
+fl=(3)
+fn=(8)
+65 552 1 552 1 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(5)
+calls=0 0
+0 8192 1 8192 1 0 0
+fl=(1)
+fn=(5)
+0
+cfi=(1)
+cfn=(6)
+calls=0 0
+0 8192 1 8192 1 0 0
+fl=(1)
+fn=(6)
+0
+cfi=(1)
+cfn=(9) std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer()
+calls=0 0
+0 8192 1 8192 1 0 0
+fl=(1)
+fn=(9)
+0 8192 1 8192 1 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(10) std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::_Ios_Openmode)
+calls=0 0
+0 552 1 5520 10 0 0
+fl=(1)
+fn=(10)
+0
+cfi=(1)
+cfn=(6)
+calls=0 0
+0 552 1 5520 10 0 0
+fl=(1)
+fn=(6)
+0
+cfi=(1)
+cfn=(7)
+calls=0 0
+0 552 1 5520 10 0 0
+fl=(1)
+fn=(7)
+0
+cfi=(3)
+cfn=(8)
+calls=0 65
+0 552 1 5520 10 0 0
+fl=(3)
+fn=(8)
+65 552 1 5520 10 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(10)
+calls=0 0
+0 8192 1 81920 10 0 0
+fl=(1)
+fn=(10)
+0
+cfi=(1)
+cfn=(6)
+calls=0 0
+0 8192 1 81920 10 0 0
+fl=(1)
+fn=(6)
+0
+cfi=(1)
+cfn=(9)
+calls=0 0
+0 8192 1 81920 10 0 0
+fl=(1)
+fn=(9)
+0 8192 1 81920 10 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(11) std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+calls=0 0
+0 0 0 310 10 0 0
+fl=(1)
+fn=(11)
+0
+cfi=(1)
+cfn=(12) std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)
+calls=0 0
+0 0 0 310 10 0 0
+fl=(1)
+fn=(12)
+0 0 0 310 10 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(10)
+calls=0 0
+0 552 1 5520 10 0 0
+fl=(1)
+fn=(10)
+0
+cfi=(1)
+cfn=(6)
+calls=0 0
+0 552 1 5520 10 0 0
+fl=(1)
+fn=(6)
+0
+cfi=(1)
+cfn=(7)
+calls=0 0
+0 552 1 5520 10 0 0
+fl=(1)
+fn=(7)
+0
+cfi=(3)
+cfn=(8)
+calls=0 65
+0 552 1 5520 10 0 0
+fl=(3)
+fn=(8)
+65 552 1 5520 10 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(10)
+calls=0 0
+0 8192 1 81920 10 0 0
+fl=(1)
+fn=(10)
+0
+cfi=(1)
+cfn=(6)
+calls=0 0
+0 8192 1 81920 10 0 0
+fl=(1)
+fn=(6)
+0
+cfi=(1)
+cfn=(9)
+calls=0 0
+0 8192 1 81920 10 0 0
+fl=(1)
+fn=(9)
+0 8192 1 81920 10 0 0
+
+fl=(1)
+fn=(4)
+0 0 0 0 0 310 10
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(13) Allocator::makeAllocator(unsigned long)
+calls=0 0
+0 0 0 36526 148 0 0
+fl=(1)
+fn=(13)
+0 0 0 36526 148 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(13)
+calls=0 0
+0 0 0 0 0 34484 140
+fl=(1)
+fn=(13)
+0 0 0 0 0 34484 140
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(14) std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+calls=0 0
+0 0 0 1024 1 0 0
+fl=(1)
+fn=(14)
+0
+cfi=(4) /build/glibc-KRRWSm/glibc-2.29/libio/iofwrite.c
+cfn=(15) fwrite
+calls=0 39
+0 0 0 1024 1 0 0
+fl=(4)
+fn=(15)
+39
+cfi=(5) /build/glibc-KRRWSm/glibc-2.29/libio/fileops.c
+cfn=(16) _IO_file_xsputn@@GLIBC_2.2.5
+calls=0 1251
+39 0 0 1024 1 0 0
+fl=(5)
+fn=(16)
+1251
+cfi=(5)
+cfn=(17) _IO_file_overflow@@GLIBC_2.2.5
+calls=0 752
+1251 0 0 1024 1 0 0
+fl=(5)
+fn=(17)
+752
+cfi=(6) /build/glibc-KRRWSm/glibc-2.29/libio/genops.c
+cfn=(18) _IO_doallocbuf
+calls=0 347
+752 0 0 1024 1 0 0
+fl=(6)
+fn=(18)
+347
+cfi=(7) /build/glibc-KRRWSm/glibc-2.29/libio/filedoalloc.c
+cfn=(19) _IO_file_doallocate
+calls=0 101
+347 0 0 1024 1 0 0
+fl=(7)
+fn=(19)
+101 0 0 1024 1 0 0
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(20) std::basic_ifstream<char, std::char_traits<char> >::close()
+calls=0 0
+0 0 0 0 0 73728 9
+fl=(1)
+fn=(20)
+0
+cfi=(1)
+cfn=(21) std::basic_filebuf<char, std::char_traits<char> >::close()
+calls=0 0
+0 0 0 0 0 73728 9
+fl=(1)
+fn=(21)
+0
+cfi=(1)
+cfn=(22) std::basic_filebuf<char, std::char_traits<char> >::_M_destroy_internal_buffer()
+calls=0 0
+0 0 0 0 0 73728 9
+fl=(1)
+fn=(22)
+0 0 0 0 0 73728 9
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(20)
+calls=0 0
+0 0 0 0 0 4968 9
+fl=(1)
+fn=(20)
+0
+cfi=(1)
+cfn=(21)
+calls=0 0
+0 0 0 0 0 4968 9
+fl=(1)
+fn=(21)
+0
+cfi=(1)
+cfn=(23) std::__basic_file<char>::close()
+calls=0 0
+0 0 0 0 0 4968 9
+fl=(1)
+fn=(23)
+0
+cfi=(8) /build/glibc-KRRWSm/glibc-2.29/libio/iofclose.c
+cfn=(24) fclose@@GLIBC_2.2.5
+calls=0 77
+0 0 0 0 0 4968 9
+fl=(8)
+fn=(24)
+77 0 0 0 0 4968 9
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(20)
+calls=0 0
+0 0 0 0 0 73728 9
+fl=(1)
+fn=(20)
+0
+cfi=(1)
+cfn=(21)
+calls=0 0
+0 0 0 0 0 73728 9
+fl=(1)
+fn=(21)
+0
+cfi=(1)
+cfn=(22)
+calls=0 0
+0 0 0 0 0 73728 9
+fl=(1)
+fn=(22)
+0 0 0 0 0 73728 9
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(20)
+calls=0 0
+0 0 0 0 0 4968 9
+fl=(1)
+fn=(20)
+0
+cfi=(1)
+cfn=(21)
+calls=0 0
+0 0 0 0 0 4968 9
+fl=(1)
+fn=(21)
+0
+cfi=(1)
+cfn=(23)
+calls=0 0
+0 0 0 0 0 4968 9
+fl=(1)
+fn=(23)
+0
+cfi=(8)
+cfn=(24)
+calls=0 77
+0 0 0 0 0 4968 9
+fl=(8)
+fn=(24)
+77 0 0 0 0 4968 9
+
+fl=(1)
+fn=(4)
+0 0 0 0 0 2042 8
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(13)
+calls=0 0
+0 0 0 0 0 72704 1
+fl=(1)
+fn=(13)
+0
+cfi=(9) /build/valgrind/parts/valgrind/build/coregrind/m_replacemalloc/vg_replace_malloc.c
+cfn=(25) operator new[](unsigned long)
+calls=0 132
+0 0 0 0 0 72704 1
+fl=(9)
+fn=(25)
+132
+cfi=(10) /build/valgrind/parts/valgrind/build/coregrind/vg_preloaded.c
+cfn=(26) _vgnU_freeres
+calls=0 68
+132 0 0 0 0 72704 1
+fl=(10)
+fn=(26)
+68
+cfi=(1)
+cfn=(27) __gnu_cxx::__freeres()
+calls=0 0
+68 0 0 0 0 72704 1
+fl=(1)
+fn=(27)
+0 0 0 0 0 72704 1
+
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(13)
+calls=0 0
+0 0 0 0 0 1024 1
+fl=(1)
+fn=(13)
+0
+cfi=(9)
+cfn=(25)
+calls=0 132
+0 0 0 0 0 1024 1
+fl=(9)
+fn=(25)
+132
+cfi=(10)
+cfn=(26)
+calls=0 75
+132 0 0 0 0 1024 1
+fl=(10)
+fn=(26)
+75
+cfi=(1)
+cfn=(28) __libc_freeres
+calls=0 0
+75 0 0 0 0 1024 1
+fl=(1)
+fn=(28)
+0
+cfi=(1)
+cfn=(29) buffer_free
+calls=0 0
+0 0 0 0 0 1024 1
+fl=(1)
+fn=(29)
+0 0 0 0 0 1024 1
+
+totals: 26232 6 294188 202 267956 196

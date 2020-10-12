@@ -1,16 +1,18 @@
 #include <cstdint>
+#include <exception>
 #include <new>
 #include "Allocator.h"
 
+#include <iostream>
+
 void Allocator::makeAllocator(const uint64_t maxSize) {
-    delete [] allocPtr;
-    allocPtr = new (std::nothrow) char[maxSize];
     if (allocPtr != nullptr) {
-        allocSize = maxSize;
-        offset = 0;
-    } else {
+        delete [] allocPtr;
+    }
+    offset = 0;
+    allocSize = maxSize;
+    if ((allocPtr = new (std::nothrow) char[maxSize]) == nullptr) {
         allocSize = 0;
-        offset = 0;
     }
 }
 

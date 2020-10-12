@@ -3,8 +3,6 @@
 #include <new>
 #include "Allocator.h"
 
-#include <iostream>
-
 void Allocator::makeAllocator(const uint64_t maxSize) {
     if (allocPtr != nullptr) {
         delete [] allocPtr;

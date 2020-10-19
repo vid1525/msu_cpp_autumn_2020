@@ -1,13 +1,13 @@
 #include "Parser.h"
 
 TokenParser::TokenParser() {
-    DigitCallback = [](const int, void *) {};
+    DigitCallback = [](uint64_t, void *) {};
     StringCallback = [](std::string, void *) {};
     StartCallback = [](void *) {};
     FinishCallback = [](void *) {};
 }
 
-void TokenParser::SetDigitTokenCallback(std::function<void(int, void *)> f) {
+void TokenParser::SetDigitTokenCallback(std::function<void(uint64_t, void *)> f) {
     DigitCallback = f;
 }
 void TokenParser::SetStringTokenCallback(std::function<void(std::string, void *)> f) {

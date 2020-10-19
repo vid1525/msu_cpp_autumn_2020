@@ -5,7 +5,7 @@
 #include <map>
 #include "Parser.h"
 
-class Counter {
+class Counter { /// counter of frequency of different tokens
 public:
     void insert(int x) {
         ++dig[x];

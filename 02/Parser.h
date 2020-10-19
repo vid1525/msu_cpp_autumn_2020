@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstdint>
 #include <functional>
 
 #ifndef PARSER_H
@@ -12,7 +13,7 @@ public:
 
     TokenParser();
 
-    void SetDigitTokenCallback(std::function<void(int, void *)> f);
+    void SetDigitTokenCallback(std::function<void(uint64_t, void *)> f);
     void SetStringTokenCallback(std::function<void(std::string, void *)> f);
     void SetStartCallback(std::function<void(void *)> f);
     void SetFinishCallback(std::function<void(void *)> f);
@@ -23,7 +24,7 @@ public:
     std::function<void (void *)> FinishCallback;
 
 private:
-    std::function<void (int, void *)> DigitCallback;
+    std::function<void (uint64_t, void *)> DigitCallback;
     std::function<void (std::string, void *)> StringCallback;
 };
 

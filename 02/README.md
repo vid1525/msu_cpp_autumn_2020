@@ -69,4 +69,5 @@ program will be crashed with exit(1) and warning (in cerr)
 
     All test samples are in tests folder, all test outputs are in test_output
     folder. To add new test you should watch at output format in file main.cpp.
-    Correctness of test working.
+    Correctness of test working is checking string by string in both files
+    test_output/tmp and test_output/[filename].

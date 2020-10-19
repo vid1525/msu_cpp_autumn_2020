@@ -40,7 +40,8 @@ or other different objects defined by user).
     After creation of function user must call one of help-methods
     with name of created function as an argument.
 
-    Sample: (for StartCallback)
+    Sample: (for StartCallback):
+    
         class Counter {
             public:
                 int stringTokens;

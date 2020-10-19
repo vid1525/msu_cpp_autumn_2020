@@ -1,0 +1,63 @@
+Input your test strings
+
+adnfweo 1
+bo 1
+eob 1
+jiwieo 1
+odkbf 1
+rwofbewfib 1
+sidbf] 1
+we 1
+
+======================================
+1 2
+4 1
+6 2
+8 1
+9 1
+44 1
+64 1
+894 1
+94889 1
+48954456 1
+65489564 1
+65489795 1
+
+- 1
+adnfweo 1
+bo 1
+eob 1
+jiwieo 1
+odkbf 1
+rwofbewfib 1
+sidbf] 1
+we 1
+
+======================================
+1 2
+4 1
+6 2
+8 1
+9 1
+44 1
+64 2
+894 1
+45645 1
+94889 1
+897546 1
+48954456 1
+65489564 1
+65489795 1
+
+- 1
+adnfweo 1
+bo 1
+eob 1
+jiwieo 1
+odkbf 1
+rwofbewfib 1
+sidbf] 1
+we 1
+
+======================================
+Testing is finished

@@ -1,3 +1,12 @@
+
+  MAKEFILE
+
+    make all -- build all project
+    make clean -- remove from main folder object files and tmp file from
+                  test_output folder
+    make test -- launch testing
+    make help -- print README.md file
+
 1. DESCRIPTION
 
 This class allows user to parse string using methods which could be redefined
@@ -41,7 +50,7 @@ or other different objects defined by user).
     with name of created function as an argument.
 
     Sample: (for StartCallback):
-    
+
         class Counter {
             public:
                 int stringTokens;

@@ -2,7 +2,7 @@ CXX_FLAGS=-Wall -Werror -O2
 CXX_VERSION=-std=c++1z
 CCXX=g++
 
-all: test
+all: main
 
 Parser.o: Parser.cpp Parser.h
 	$(CCXX) -c $(CXX_FLAGS) $(CXX_VERSION) Parser.cpp -o Parser.o
@@ -10,9 +10,12 @@ Parser.o: Parser.cpp Parser.h
 main.o: main.cpp
 	$(CCXX) -c $(CXX_FLAGS) $(CXX_VERSION) main.cpp -o main.o
 
-test: main.o Parser.o
-	$(CCXX) $(CXX_FLAGS) $(CXX_VERSION) main.o Parser.o -o test
-	./test
+main: main.o Parser.o
+	$(CCXX) $(CXX_FLAGS) $(CXX_VERSION) main.o Parser.o -o main
+
+test: main
+	./main
+
 clean:
 	rm -f *.o test_output/tmp
 help:

@@ -17,7 +17,8 @@ All detected tokens will be processed by DigitalCallback and StringCallback.
 
 All user-defined methods take argument of UserClass type, this is neccessary to
 give an opportunity to use different classes in Parser (it could be containers
-or other different objects defined by user).
+or other different objects defined by user). UserClass is template for different
+classes.
 
     This class contains methods:
         help-methods:

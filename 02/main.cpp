@@ -13,44 +13,55 @@ public:
     void insert(std::string s) {
         ++str[s];
     }
-    void printDig(std::ostream &fout) {
+    void printDig() {
         for (auto i : dig) {
             fout << i.first << " " << i.second << "\n";
         }
         fout << "\n";
     }
-    void printStr(std::ostream &fout) {
+    void printStr() {
         for (auto i : str) {
             fout << i.first << " " << i.second << "\n";
         }
         fout << "\n";
     }
-    void printDiff(std::ostream &fout) {
+    void printDiff() {
         fout << "======================================\n";
+    }
+    void print(const std::string s) {
+        fout << s;
+    }
+    void setFout(const std::string filename) {
+        fout.open(filename);
+    }
+    void closeFout() {
+        fout.close();
+    }
+
+    Counter () {}
+    ~Counter () {
+        fout.close();
     }
 private:
     std::map<int, int> dig;
     std::map<std::string, int> str;
+    std::ofstream fout;
 };
 
-void digToken(int x, void *a) {
-    auto b = static_cast<Counter *>(a);
-    b->insert(x);
+void digToken(int x, Counter &a) {
+    a.insert(x);
 }
 
-void strToken(std::string x, void *a) {
-    auto b = static_cast<Counter *>(a);
-    b->insert(x);
+void strToken(std::string x, Counter &a) {
+    a.insert(x);
 }
 
-void startCallback(void *a) {
-    auto fout = static_cast<std::ostream *>(a);
-    *fout << "Input your test strings\n";
+void startCallback(Counter &a) {
+    a.print("Input your test strings\n");
 }
 
-void finishCallback(void *a) {
-    auto fout = static_cast<std::ostream *>(a);
-    *fout << "Testing is finished\n";
+void finishCallback(Counter &a) {
+    a.print("Testing is finished\n");
 }
 
 int main() {
@@ -61,29 +72,31 @@ int main() {
 
     while (testFiles >> filename) {
         std::ifstream inputFileStream(testInputFolder + '/' + filename);
-        std::ofstream outputTest(testOutputFolder + "/tmp");
         std::string inputStr;
         Counter val;
-        TokenParser ps;
+        TokenParser<Counter> ps;
 
         // Result Generating
+
+        val.setFout(testOutputFolder + "/tmp");
 
         ps.SetStartCallback(startCallback);
         ps.SetFinishCallback(finishCallback);
         ps.SetDigitTokenCallback(digToken);
         ps.SetStringTokenCallback(strToken);
 
-        ps.StartCallback(&outputTest);
+        ps.StartCallback(val);
         while (getline(inputFileStream, inputStr)) {
-            ps.Parse(inputStr, &val);
-            val.printDig(outputTest);
-            val.printStr(outputTest);
-            val.printDiff(outputTest);
+            ps.Parse(inputStr, val);
+            val.printDig();
+            val.printStr();
+            val.printDiff();
         }
-        ps.FinishCallback(&outputTest);
+        ps.FinishCallback(val);
+
+        val.closeFout();
 
         inputFileStream.close();
-        outputTest.close();
 
         /// Testing
 

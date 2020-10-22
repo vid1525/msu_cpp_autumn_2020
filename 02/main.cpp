@@ -7,34 +7,34 @@
 
 class Counter { /// counter of frequency of different tokens
 public:
-    void insert(int x) {
+    void insert(const int x) {
         ++dig[x];
     }
-    void insert(std::string s) {
+    void insert(const std::string &s) {
         ++str[s];
     }
-    void printDig() {
+    void printDig() const {
         for (auto i : dig) {
             fout << i.first << " " << i.second << "\n";
         }
         fout << "\n";
     }
-    void printStr() {
+    void printStr() const {
         for (auto i : str) {
             fout << i.first << " " << i.second << "\n";
         }
         fout << "\n";
     }
-    void printDiff() {
+    void printDiff() const {
         fout << "======================================\n";
     }
-    void print(const std::string s) {
+    void print(const std::string &s) const {
         fout << s;
     }
-    void setFout(const std::string filename) {
+    void setFout(const std::string &filename) const {
         fout.open(filename);
     }
-    void closeFout() {
+    void closeFout() const {
         fout.close();
     }
 
@@ -45,14 +45,14 @@ public:
 private:
     std::map<int, int> dig;
     std::map<std::string, int> str;
-    std::ofstream fout;
+    mutable std::ofstream fout;
 };
 
 void digToken(int x, Counter &a) {
     a.insert(x);
 }
 
-void strToken(std::string x, Counter &a) {
+void strToken(std::string &x, Counter &a) {
     a.insert(x);
 }
 

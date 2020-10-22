@@ -4,7 +4,7 @@ CCXX=g++
 
 all: main
 
-main: main.cpp  Parser.h
+main: main.cpp Parser.h
 	$(CCXX) $(CXX_FLAGS) $(CXX_VERSION) main.cpp -o main
 
 test: main

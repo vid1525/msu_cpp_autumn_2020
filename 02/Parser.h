@@ -15,25 +15,25 @@ public:
     TokenParser();
 
     void SetDigitTokenCallback(const std::function<void(uint64_t, UserClass &)> f);
-    void SetStringTokenCallback(const std::function<void(std::string, UserClass &)> f);
+    void SetStringTokenCallback(const std::function<void(std::string &, UserClass &)> f);
     void SetStartCallback(const std::function<void(UserClass &)> f);
     void SetFinishCallback(const std::function<void(UserClass &)> f);
 
-    void Parse(const std::string &str, UserClass &);
+    void Parse(const std::string &str, UserClass &) const;
 
     std::function<void (UserClass &)> StartCallback;
     std::function<void (UserClass &)> FinishCallback;
 
 private:
     std::function<void (uint64_t, UserClass &)> DigitCallback;
-    std::function<void (std::string, UserClass &)> StringCallback;
+    std::function<void (std::string &, UserClass &)> StringCallback;
 };
 
 
 template <typename UserClass>
 TokenParser<UserClass>::TokenParser() {
     DigitCallback = [](uint64_t, UserClass &) {};
-    StringCallback = [](std::string, UserClass &) {};
+    StringCallback = [](std::string &, UserClass &) {};
     StartCallback = [](UserClass &) {};
     FinishCallback = [](UserClass &) {};
 }
@@ -44,7 +44,7 @@ void TokenParser<UserClass>::SetDigitTokenCallback(const std::function<void(uint
 }
 
 template <typename UserClass>
-void TokenParser<UserClass>::SetStringTokenCallback(const std::function<void(std::string, UserClass &)> f) {
+void TokenParser<UserClass>::SetStringTokenCallback(const std::function<void(std::string &, UserClass &)> f) {
     StringCallback = f;
 }
 
@@ -59,7 +59,7 @@ void TokenParser<UserClass>::SetFinishCallback(const std::function<void(UserClas
 }
 
 template <typename UserClass>
-void TokenParser<UserClass>::Parse(const std::string &str, UserClass &userClass) {
+void TokenParser<UserClass>::Parse(const std::string &str, UserClass &userClass) const {
     auto it = str.begin();
     do {
         while (it != str.end() && isspace((unsigned char) *it)) {
@@ -69,19 +69,21 @@ void TokenParser<UserClass>::Parse(const std::string &str, UserClass &userClass)
             break;
         }
         bool stringFlag = false;
-        std::stringstream curStream;
+        std::string curStream;
         while (it != str.end() && !isspace((unsigned char) *it)) {
             if (!isdigit((unsigned char) *it)) {
                 stringFlag = true;
             }
-            curStream << *it;
+            curStream += *it;
             ++it;
         }
         if (stringFlag) {
-            StringCallback(curStream.str(), userClass);
+            StringCallback(curStream, userClass);
         } else {
             uint64_t x;
-            curStream >> x;
+            std::stringstream newStream;
+            newStream << curStream;
+            newStream >> x;
             DigitCallback(x, userClass);
         }
     } while (1);

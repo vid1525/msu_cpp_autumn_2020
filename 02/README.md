@@ -25,7 +25,7 @@ classes.
             1) void SetStartCallback(std::function<void(UserClass &)>)
             2) void SetFinishCallback(std::function<void(UserClass &)>)
             3) void SetDigitTokenCallback(std::function<void(uint64_t, UserClass &)>)
-            4) void SetStringTokenCallback(std::function<void(std::string, UserClass &)>)
+            4) void SetStringTokenCallback(std::function<void(std::string &, UserClass &)>)
 
         main-method:
             5) void Parse (std::string, UserClass &)
@@ -36,7 +36,7 @@ classes.
             6) void StartCallback(UserClass &)            (public)
             7) void FinishCallback(UserClass &)           (public)
             8) void DigitCallback(uint64_t, UserClass &)  (private)
-            9) void StringCallback(uint64_t, UserClass &) (private)
+            9) void StringCallback(std::string &, UserClass &) (private)
 
             (Actually these members of Parser are not functions. They are only
              elements of function<...> type, which do nothing before

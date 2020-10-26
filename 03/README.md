@@ -1,41 +1,54 @@
 
 MAKE OPTIONS:
+
     make test (make all) - build main file (executable file)
     make clean - clear folder from *.o files
     make help - get README.md file
 
 
 COMMON INFO:
+
     main.cpp - file with source code of testing program
 
     Matrix.cpp - file with source code of class Matrix and proxy-class
                  MatrixRow.
 
 MATRIX INTERFACE:
-    Matrix(const int rows, const int columns) -- create matrix with given param
+
+    Matrix(const int rows, const int columns) -- create matrix with given parameters
+
     int getColumns() const -- get count of columns in matrix
+
     int getRows() const -- get count of rows in matrix
+
     const Matrix &operator *=(const int value) -- multiply matrix by value
                     (returns result of operation)
+
     const Matrix &operator =(const Matrix &value) -- assign one matrix to another
                     (return assigned matrix)
+
     int &operator[][](const int index1, const int index2) const -- returns an
                     link to element in matrix by indices index1 and index2
                     (if one of indices is out of range then will be called
                     exception "out of range")
+
     const Matrix operator +(const Matrix &value) const -- returns sum of two
                     matrices (if matrix sizes are not compatible then will be called
                     exception)
+
     bool operator ==(const Matrix &value) const -- 1 if A == B and 0 otherwise
                     (if matrix sizes are not compatible then will be called
                     exception)
+
     bool operator !=(const Matrix &value) const -- 1 if A != B and 0 otherwise
                     (if matrix sizes are not compatible then will be called
                     exception)
+
     void printMatrix(std::ostream &fout) const -- prints matrix in stream
 
 
 TEST MODE:
+
     1.
     All tests are contained in test folder.
     To add new test file you should create test file,

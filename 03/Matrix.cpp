@@ -1,30 +1,12 @@
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
+#include "Matrix.h"
 
-class MatrixRow {
-public:
-    MatrixRow(const int columns);
-    ~MatrixRow();
-    int getColumns() const;
+MatrixRow::MatrixRow() : Columns(0), matrix(nullptr) {}
 
-    virtual const MatrixRow &operator *=(const int value);
-    virtual const MatrixRow &operator =(const MatrixRow &value);
-    virtual int &operator[](const int index) const;
-    virtual const MatrixRow operator +(const MatrixRow &value) const;
-    virtual bool operator ==(const MatrixRow &value) const;
-    virtual bool operator !=(const MatrixRow &value) const;
-    virtual void printMatrix(std::ostream &fout) const;
-protected:
-    void sizeException(const int value) const;
-    int Columns;
-private:
-    int *matrix;
-};
-
-MatrixRow::MatrixRow(const int columns) {
-    Columns = columns;
-    matrix = new int[columns];
+MatrixRow::MatrixRow(const int columns) : Columns(columns) {
+    matrix = new int[Columns];
+    for (int i = 0; i < Columns; ++i) {
+        matrix[i] = 0;
+    }
 }
 
 MatrixRow::~MatrixRow() {
@@ -59,7 +41,9 @@ const MatrixRow MatrixRow::operator +(const MatrixRow &value) const {
 }
 
 const MatrixRow &MatrixRow::operator =(const MatrixRow &value) {
-    sizeException(value.getColumns());
+    delete [] matrix;
+    Columns = value.getColumns();
+    matrix = new int[Columns];
     for (int i = 0; i < Columns; ++i) {
         matrix[i] = value[i];
     }
@@ -99,53 +83,90 @@ void MatrixRow::sizeException(const int value) const {
     }
 }
 
-///////////////////////////////////////////////////////
+                    ////// MATRIX CLASS //////
 
-class Matrix : public MatrixRow {
-public:
-    Matrix(const int rows, const int columns) : MatrixRow(columns);
-    ~Matrix();
-
-    int getRows() const {
-        return Rows;
-    }
-
-    const Matrix &operator *=(const int value) override;
-    const Matrix &operator =(const Matrix &value) override;
-    int &operator[](const int index) const override;
-    const Matrix operator +(const Matrix &value) const override;
-    bool operator ==(const Matrix &value) const override;
-    bool operator !=(const Matrix &value) const override;
-    void printMatrix(std::ostream &fout) const override;
-private:
-    MatrixRow *matrix;
-    int Rows;
-};
-
-Matrix::Matrix(const int rows, const int columns) : MatrixRow(columns) {
-    Rows = rows;
-    Columns = columns;
-    matrix = new MatrixRow *[rows];
-    for (int i = 0; i < rows; ++i) {
-        matrix[i] = new MatrixRow(columns);
+Matrix::Matrix(const int rows, const int columns) : Columns(columns), Rows(rows) {
+    matrix = new MatrixRow[Rows];
+    for (int i = 0; i < Rows; ++i) {
+        matrix[i] = MatrixRow(Columns);
     }
 }
+
 Matrix::~Matrix() {
-    for (int i = 0; i < rows; ++i) {
-        delete [] matrix[i];
-    }
     delete [] matrix;
 }
 
-const Matrix &Matrix::operator *=(const int value) override {
+int Matrix::getColumns() const {
+    return Columns;
+}
+
+int Matrix::getRows() const {
+    return Rows;
+}
+
+MatrixRow &Matrix::operator[](const int index) const {
+    if (index >= Rows) {
+        throw std::out_of_range("Index is out of range\n");
+    }
+    return matrix[index];
+}
+
+const Matrix &Matrix::operator *=(const int value) {
     for (int i = 0; i < Rows; ++i) {
         matrix[i] *= value;
     }
     return *this;
 }
-const Matrix Matrix::&operator =(const Matrix &value) override;
-int &Matrix::operator[](const int index) const override;
-const Matrix Matrix::operator +(const Matrix &value) const override;
-bool Matrix::operator ==(const Matrix &value) const override;
-bool Matrix::operator !=(const Matrix &value) const override;
-void Matrix::printMatrix(std::ostream &fout) const override;
+
+const Matrix Matrix::operator +(const Matrix &value) const {
+    sizeException(value.getRows());
+    Matrix ans(Rows, Columns);
+    for (int i = 0; i < Rows; ++i) {
+        ans[i] = matrix[i] + value[i];
+    }
+    return ans;
+}
+
+const Matrix &Matrix::operator =(const Matrix &value) {
+    delete [] matrix;
+    Columns = value.getColumns();
+    Rows = value.getRows();
+    matrix = new MatrixRow[Rows];
+    for (int i = 0; i < Rows; ++i) {
+        matrix[i] = value[i];
+    }
+    return *this;
+}
+
+bool Matrix::operator ==(const Matrix &value) const {
+    sizeException(value.getRows());
+    for (int i = 0; i < Rows; ++i) {
+        if (matrix[i] != value[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Matrix::operator !=(const Matrix &value) const {
+    sizeException(value.getRows());
+    for (int i = 0; i < Rows; ++i) {
+        if (matrix[i] != value[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Matrix::printMatrix(std::ostream &fout) const {
+    for (int i = 0; i < Rows; ++i) {
+        matrix[i].printMatrix(fout);
+    }
+    fout << "\n";
+}
+
+void Matrix::sizeException(const int value) const {
+    if (value != Rows) {
+        throw "Matrix sizes are different\n";
+    }
+}

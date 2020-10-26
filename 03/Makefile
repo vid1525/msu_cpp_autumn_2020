@@ -2,10 +2,16 @@ CXX_FLAGS=-Wall -Werror -O2
 CXX_VERSION=-std=c++1z
 CCXX=g++
 
-all: 
+all: main
 
-Matirx.o: Matrix.cpp
+Matirx.o: Matrix.cpp Matrix.h
 	$(CCXX) -c $(CXX_FLAGS) $(CXX_VERSION) Matrix.cpp -o Matrix.o
+
+main.o: main.cpp
+	$(CCXX) -c $(CXX_FLAGS) $(CXX_VERSION) main.cpp -o main.o
+
+main: main.o Matrix.o
+	$(CCXX) $(CXX_FLAGS) $(CXX_VERSION) main.o Matrix.o -o main
 
 test: main
 	./main

@@ -10,7 +10,7 @@ COMMON INFO:
 
     main.cpp - file with source code of testing program
 
-    Matrix.cpp - file with source code of class Matrix and proxy-class
+    Matrix.cpp - file with source code of class Matrix and proxy-class 
                  MatrixRow.
 
 MATRIX INTERFACE:

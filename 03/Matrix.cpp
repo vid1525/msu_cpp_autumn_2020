@@ -90,7 +90,7 @@ void MatrixRow::sizeException(const int value) const {
     }
 }
 
-                    ////// MATRIX CLASS //////
+                    ////// MATRIX //////
 
 Matrix::Matrix(const int rows, const int columns) : Columns(columns), Rows(rows) {
     matrix = new MatrixRow[Rows];

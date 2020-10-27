@@ -31,7 +31,7 @@ int &MatrixRow::operator [](const int index) {
     return matrix[index];
 }
 
-const MatrixRow &MatrixRow::operator *=(const int value) {
+MatrixRow &MatrixRow::operator *=(const int value) {
     for (int i = 0; i < Columns; ++i) {
         matrix[i] *= value;
     }
@@ -47,7 +47,7 @@ MatrixRow MatrixRow::operator +(const MatrixRow &value) {
     return ans;
 }
 
-const MatrixRow &MatrixRow::operator =(const MatrixRow &value) {
+MatrixRow &MatrixRow::operator =(const MatrixRow &value) {
     delete [] matrix;
     Columns = value.getColumns();
     matrix = new int[Columns];
@@ -132,7 +132,7 @@ MatrixRow &Matrix::operator [](const int index) {
     return matrix[index];
 }
 
-const Matrix &Matrix::operator *=(const int value) {
+Matrix &Matrix::operator *=(const int value) {
     for (int i = 0; i < Rows; ++i) {
         matrix[i] *= value;
     }

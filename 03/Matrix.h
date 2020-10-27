@@ -22,8 +22,8 @@ private:
 
     int getColumns() const;
 
-    const MatrixRow &operator *=(const int value);
-    const MatrixRow &operator =(const MatrixRow &value);
+    MatrixRow &operator *=(const int value);
+    MatrixRow &operator =(const MatrixRow &value);
     MatrixRow operator +(const MatrixRow &value);
     bool operator ==(const MatrixRow &value) const;
     bool operator !=(const MatrixRow &value) const;
@@ -38,7 +38,7 @@ public:
     int getColumns() const;
     int getRows() const;
 
-    const Matrix &operator *=(const int value);
+    Matrix &operator *=(const int value);
     Matrix &operator =(const Matrix &value);
     const MatrixRow &operator [](const int index) const;
     MatrixRow &operator [](const int index);

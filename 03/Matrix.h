@@ -24,7 +24,7 @@ private:
 
     const MatrixRow &operator *=(const int value);
     const MatrixRow &operator =(const MatrixRow &value);
-    const MatrixRow operator +(const MatrixRow &value) const;
+    MatrixRow operator +(const MatrixRow &value);
     bool operator ==(const MatrixRow &value) const;
     bool operator !=(const MatrixRow &value) const;
     void printMatrix(std::ostream &fout) const;

@@ -38,7 +38,7 @@ const MatrixRow &MatrixRow::operator *=(const int value) {
     return *this;
 }
 
-const MatrixRow MatrixRow::operator +(const MatrixRow &value) const {
+MatrixRow MatrixRow::operator +(const MatrixRow &value) {
     sizeException(value.getColumns());
     MatrixRow ans(Columns);
     for (int i = 0; i < Columns; ++i) {

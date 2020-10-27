@@ -21,10 +21,10 @@ MATRIX INTERFACE:
 
     int getRows() const -- get count of rows in matrix
 
-    const Matrix &operator *=(const int value) -- multiply matrix by value
+    Matrix &operator *=(const int value) -- multiply matrix by value
                     (returns result of operation)
 
-    const Matrix &operator =(const Matrix &value) -- assign one matrix to another
+    Matrix &operator =(const Matrix &value) -- assign one matrix to another
                     (return assigned matrix)
 
     int &operator[][](const int index1, const int index2) const -- returns an
@@ -32,7 +32,7 @@ MATRIX INTERFACE:
                     (if one of indices is out of range then will be called
                     exception "out of range")
 
-    const Matrix operator +(const Matrix &value) const -- returns sum of two
+    Matrix operator +(const Matrix &value) const -- returns sum of two
                     matrices (if matrix sizes are not compatible then will be called
                     exception)
 

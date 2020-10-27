@@ -17,7 +17,14 @@ int MatrixRow::getColumns() const {
     return Columns;
 }
 
-int &MatrixRow::operator[](const int index) const {
+const int &MatrixRow::operator [](const int index) const {
+    if (index >= Columns) {
+        throw std::out_of_range("Index is out of range\n");
+    }
+    return matrix[index];
+}
+
+int &MatrixRow::operator [](const int index) {
     if (index >= Columns) {
         throw std::out_of_range("Index is out of range\n");
     }
@@ -92,6 +99,13 @@ Matrix::Matrix(const int rows, const int columns) : Columns(columns), Rows(rows)
     }
 }
 
+Matrix::Matrix(const Matrix &value) {
+    matrix = new MatrixRow[value.getRows()];
+    for (int i = 0; i < Rows; ++i) {
+        matrix[i] = value[i];
+    }
+}
+
 Matrix::~Matrix() {
     delete [] matrix;
 }
@@ -104,7 +118,14 @@ int Matrix::getRows() const {
     return Rows;
 }
 
-MatrixRow &Matrix::operator[](const int index) const {
+const MatrixRow &Matrix::operator [](const int index) const {
+    if (index >= Rows) {
+        throw std::out_of_range("Index is out of range\n");
+    }
+    return matrix[index];
+}
+
+MatrixRow &Matrix::operator [](const int index) {
     if (index >= Rows) {
         throw std::out_of_range("Index is out of range\n");
     }
@@ -118,7 +139,7 @@ const Matrix &Matrix::operator *=(const int value) {
     return *this;
 }
 
-const Matrix Matrix::operator +(const Matrix &value) const {
+Matrix Matrix::operator +(const Matrix &value) const {
     sizeException(value.getRows());
     Matrix ans(Rows, Columns);
     for (int i = 0; i < Rows; ++i) {
@@ -127,7 +148,10 @@ const Matrix Matrix::operator +(const Matrix &value) const {
     return ans;
 }
 
-const Matrix &Matrix::operator =(const Matrix &value) {
+Matrix &Matrix::operator =(const Matrix &value) {
+    if (value == *this) {
+        return *this;
+    }
     delete [] matrix;
     Columns = value.getColumns();
     Rows = value.getRows();
@@ -139,7 +163,9 @@ const Matrix &Matrix::operator =(const Matrix &value) {
 }
 
 bool Matrix::operator ==(const Matrix &value) const {
-    sizeException(value.getRows());
+    if (value.getColumns() != Columns || value.getRows() != Rows) {
+        return false;
+    }
     for (int i = 0; i < Rows; ++i) {
         if (matrix[i] != value[i]) {
             return false;
@@ -149,7 +175,9 @@ bool Matrix::operator ==(const Matrix &value) const {
 }
 
 bool Matrix::operator !=(const Matrix &value) const {
-    sizeException(value.getRows());
+    if (value.getColumns() != Columns || value.getRows() != Rows) {
+        return true;
+    }
     for (int i = 0; i < Rows; ++i) {
         if (matrix[i] != value[i]) {
             return true;

@@ -20,3 +20,9 @@ clean:
 	rm -f *.o test_output/tmp
 help:
 	cat README.md
+
+scratch.o: scratch.cpp
+	$(CCXX) -c $(CXX_FLAGS) $(CXX_VERSION) scratch.cpp -o scratch.o
+
+scratch: Matrix.o scratch.o
+	$(CCXX) $(CXX_FLAGS) $(CXX_VERSION) Matrix.o scratch.o -o scratch

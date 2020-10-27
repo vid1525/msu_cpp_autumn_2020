@@ -10,7 +10,8 @@ public:
     MatrixRow();
     MatrixRow(const int columns);
     ~MatrixRow();
-    int &operator[](const int index) const;
+    const int &operator[](const int index) const;
+    int &operator[](const int index);
 
     friend class Matrix;
 
@@ -32,14 +33,16 @@ private:
 class Matrix {
 public:
     Matrix(const int rows, const int columns);
+    Matrix(const Matrix &value);
     ~Matrix();
     int getColumns() const;
     int getRows() const;
 
     const Matrix &operator *=(const int value);
-    const Matrix &operator =(const Matrix &value);
-    MatrixRow &operator[](const int index) const;
-    const Matrix operator +(const Matrix &value) const;
+    Matrix &operator =(const Matrix &value);
+    const MatrixRow &operator [](const int index) const;
+    MatrixRow &operator [](const int index);
+    Matrix operator +(const Matrix &value) const;
     bool operator ==(const Matrix &value) const;
     bool operator !=(const Matrix &value) const;
     void printMatrix(std::ostream &fout) const;

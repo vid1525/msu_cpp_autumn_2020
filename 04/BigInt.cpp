@@ -304,18 +304,23 @@ BigInt &BigInt::operator =(const int64_t val) {
 bool BigInt::operator >(const int64_t val) const {
     return *this > BigInt(val);
 }
+
 bool BigInt::operator >=(const int64_t val) const {
     return *this >= BigInt(val);
 }
+
 bool BigInt::operator <(const int64_t val) const {
     return *this < BigInt(val);
 }
+
 bool BigInt::operator <=(const int64_t val) const {
     return *this <= BigInt(val);
 }
+
 bool BigInt::operator ==(const int64_t val) const {
     return *this == BigInt(val);
 }
+
 bool BigInt::operator !=(const int64_t val) const {
     return *this != BigInt(val);
 }
@@ -323,18 +328,23 @@ bool BigInt::operator !=(const int64_t val) const {
 BigInt BigInt::operator +(const int64_t val) const {
     return *this + BigInt(val);
 }
+
 BigInt BigInt::operator -(const int64_t val) const {
     return *this - BigInt(val);
 }
+
 BigInt BigInt::operator *(const int64_t val) const {
     return *this * BigInt(val);
 }
+
 BigInt &BigInt::operator *=(const int64_t val) {
     return *this *= BigInt(val);
 }
+
 BigInt &BigInt::operator +=(const int64_t val) {
     return *this += BigInt(val);
 }
+
 BigInt &BigInt::operator -=(const int64_t val) {
     return *this -= BigInt(val);
 }

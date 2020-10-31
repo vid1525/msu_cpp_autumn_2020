@@ -12,7 +12,7 @@ int main() {
 
     while (testFiles >> filename) {
         std::ifstream fileInput(testInputFolder + "/" + filename);
-        std::ofstream tmpFileOutput(testOutputFolder + "/" + filename);
+        std::ofstream tmpFileOutput(testOutputFolder + "/tmp");
 
                           /// GETING ANSWER ///
 
@@ -104,7 +104,7 @@ int main() {
         fileInput.close();
 
                             /// TESTING ///
-/*
+
         std::ifstream tmpFileInput(testOutputFolder + "/tmp");
         std::ifstream ansFileInput(testOutputFolder + "/" + filename);
 
@@ -139,7 +139,7 @@ int main() {
         tmpFileInput.close();
         ansFileInput.close();
 
-*/
+
     }
 
     testFiles.close();

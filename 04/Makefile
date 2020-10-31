@@ -18,5 +18,6 @@ test: main
 
 clean:
 	rm -f *.o test_output/tmp
+
 help:
 	cat README.md

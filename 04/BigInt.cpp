@@ -88,11 +88,13 @@ BigInt::BigInt(const BigInt &val) {
     }
 }
 
-BigInt::BigInt(const BigInt &&val) {
+BigInt::BigInt(BigInt &&val) {
     number = val.number;
     sign = val.sign;
     last = val.last;
     size = val.size;
+
+    val.number = nullptr;
 }
 
 BigInt::~BigInt() {
@@ -123,8 +125,8 @@ BigInt &BigInt::operator =(const BigInt &val) {
     return *this;
 }
 
-BigInt &BigInt::operator =(const BigInt &&val) {
-    if (&val != this) {
+BigInt &BigInt::operator =(BigInt &&val) {
+    if (&val == this) {
         return *this;
     }
 
@@ -133,6 +135,8 @@ BigInt &BigInt::operator =(const BigInt &&val) {
     sign = val.sign;
     last = val.last;
     size = val.size;
+
+    val.number = nullptr;
 
     return *this;
 }

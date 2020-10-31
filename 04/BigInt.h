@@ -14,13 +14,13 @@ public:
     BigInt(const int64_t val);
     BigInt(const std::string &str);
     BigInt(const BigInt &val);
-    BigInt(const BigInt &&val);
+    BigInt(BigInt &&val);
     ~BigInt();
 
         /// WITH BigInt ///
     BigInt operator -() const;
     BigInt &operator =(const BigInt &val);
-    BigInt &operator =(const BigInt &&val);
+    BigInt &operator =(BigInt &&val);
     bool operator >(const BigInt &val) const;
     bool operator >=(const BigInt &val) const;
     bool operator <(const BigInt &val) const;

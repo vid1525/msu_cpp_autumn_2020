@@ -69,8 +69,6 @@ TEST MODE:
     Result of work of BigInt will be written in tmp and then content from tmp
     will be compared with necessary file in test_output folder.
 
-    ///
-
     2.
     To test correctness of memory allocation you should launch in terminal:
         valgrind -q ./test (if valgrind is installed already)

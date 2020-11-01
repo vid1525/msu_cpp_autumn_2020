@@ -62,6 +62,7 @@ private:
     int64_t size;  /// count of cells
     int64_t last;  /// last used index
 
+    void setDefault();
     void appendNumber(const int32_t x);
     void realloc();
     int comparePositive(const BigInt &a, const BigInt &b) const;

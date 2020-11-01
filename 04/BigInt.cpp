@@ -1,19 +1,11 @@
 #include "BigInt.h"
 
 BigInt::BigInt() {
-    number = new int32_t[1];
-    number[0] = 0;
-    size = 1;
-    last = 0;
-    sign = false;
+    setDefault();
 }
 
 BigInt::BigInt(const int64_t val) {
-    number = new int32_t[1];
-    number[0] = 0;
-    size = 1;
-    last = 0;
-    sign = false;
+    setDefault();
     int64_t newVal = val;
     if (val < 0) {
         sign = true;
@@ -26,11 +18,7 @@ BigInt::BigInt(const int64_t val) {
 }
 
 BigInt::BigInt(const std::string &str) {
-    number = new int32_t[1];
-    number[0] = 0;
-    size = 1;
-    last = 0;
-    sign = false;
+    setDefault();
     if (str != "") {
         sign = str[0] == '-' ? true : false;
     } else {
@@ -42,10 +30,10 @@ BigInt::BigInt(const std::string &str) {
             ++beg;
         }
         --beg;
-        if (beg == (int64_t) str.size() - 1) {
+        int64_t n = str.size() - 1;
+        if (beg == n) {
             sign = false;
         }
-        int64_t n = str.size() - 1;
         for (int64_t i = n; i > beg; i -= LEN) {
             std::string cur;
             for (int64_t j = i; j > i - LEN && j > beg; --j) {
@@ -82,7 +70,6 @@ BigInt::BigInt(const BigInt &val) {
     last = val.last;
     sign = val.sign;
     number = new int32_t[size];
-    std::fill(number, number + size, 0);
     for (int64_t i = 0; i < last; ++i) {
         number[i] = val.number[i];
     }
@@ -118,7 +105,6 @@ BigInt &BigInt::operator =(const BigInt &val) {
     last = val.last;
     sign = val.sign;
     number = new int32_t[size];
-    std::fill(number, number + size, 0);
     for (int64_t i = 0; i < last; ++i) {
         number[i] = val.number[i];
     }
@@ -378,10 +364,17 @@ std::ostream &operator << (std::ostream &fout, const BigInt &value) {
 
             /// PRIVATE ///
 
+void BigInt::setDefault() {
+    number = new int32_t[1];
+    number[0] = 0;
+    size = 1;
+    last = 0;
+    sign = false;
+}
+
 void BigInt::realloc() {
     size <<= 1;
     int32_t *new_ptr = new int32_t[size];
-    std::fill(new_ptr, new_ptr + size, 0);
     for (int64_t i = 0; i < size / 2; ++i) {
         new_ptr[i] = number[i];
     }

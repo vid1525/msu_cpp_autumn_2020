@@ -138,8 +138,6 @@ int main() {
 
         tmpFileInput.close();
         ansFileInput.close();
-
-
     }
 
     testFiles.close();

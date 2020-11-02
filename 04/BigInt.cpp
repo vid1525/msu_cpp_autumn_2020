@@ -25,61 +25,28 @@ BigInt::BigInt(const std::string &str) {
         return ;
     }
     if (sign) {
-        int64_t beg = 1;
-        while (str[beg] == '0') {
-            ++beg;
-        }
-        --beg;
-        int64_t n = str.size() - 1;
-        if (beg == n) {
-            sign = false;
-        }
-        for (int64_t i = n; i > beg; i -= LEN) {
-            std::string cur;
-            for (int64_t j = i; j > i - LEN && j > beg; --j) {
-                cur = str[j] + cur;
-            }
-            std::stringstream val;
-            val << cur;
-            int32_t x;
-            val >> x;
-            appendNumber(x);
-        }
+        buildByString(1, str);
     } else {
-        int64_t beg = 0;
-        while (str[beg] == '0') {
-            ++beg;
-        }
-        int64_t n = str.size() - 1;
-        for (int64_t i = n; i >= beg; i -= LEN) {
-            std::string cur;
-            for (int64_t j = i; j > i - LEN && j >= beg; --j) {
-                cur = str[j] + cur;
-            }
-            std::stringstream val;
-            val << cur;
-            int32_t x;
-            val >> x;
-            appendNumber(x);
-        }
+        buildByString(0, str);
     }
 }
 
-BigInt::BigInt(const BigInt &val) {
-    size = val.size;
-    last = val.last;
-    sign = val.sign;
-    number = new int32_t[size];
+BigInt::BigInt(const BigInt &val)
+    : number(new int32_t[val.size])
+    , sign(val.sign)
+    , size(val.size)
+    , last(val.last) {
+
     for (int64_t i = 0; i < last; ++i) {
         number[i] = val.number[i];
     }
 }
 
-BigInt::BigInt(BigInt &&val) {
-    number = val.number;
-    sign = val.sign;
-    last = val.last;
-    size = val.size;
+BigInt::BigInt(BigInt &&val)
+    : number(val.number)
+    , sign(val.sign)
+    , size(val.size)
+    , last(val.last) {
 
     val.number = nullptr;
 }
@@ -444,5 +411,27 @@ void BigInt::subPositive(BigInt &a, const BigInt &val) const {
 
     while (a.last > 1 && a.number[a.last - 1] == 0) {
         --a.last;
+    }
+}
+
+void BigInt::buildByString(int64_t beg, const std::string &str) {
+    while (str[beg] == '0') {
+        ++beg;
+    }
+    --beg;
+    int64_t n = str.size() - 1;
+    if (beg == n) {
+        sign = false;
+    }
+    for (int64_t i = n; i > beg; i -= LEN) {
+        std::string cur;
+        for (int64_t j = i; j > i - LEN && j > beg; --j) {
+            cur = str[j] + cur;
+        }
+        std::stringstream val;
+        val << cur;
+        int32_t x;
+        val >> x;
+        appendNumber(x);
     }
 }

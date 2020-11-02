@@ -68,6 +68,7 @@ private:
     int comparePositive(const BigInt &a, const BigInt &b) const;
     void addPositive(BigInt &a, const BigInt &b) const;
     void subPositive(BigInt &a, const BigInt &val) const;
+    void buildByString(int64_t beg, const std::string &str);
 };
 
 #endif

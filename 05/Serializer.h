@@ -42,11 +42,11 @@ private:
             ans = true;
         } else if (s == "false") {
             ans = false;
-        } else if (digit(s)) {
-            ans = 0;
-            for (const auto &k : s) {
-                ans *= 10;
-                ans += (k - '0');
+        } else if (digit(s)){
+            try {
+                ans = std::stoull(s);
+            } catch (std::out_of_range) {
+                return Error::CorruptedArchive;
             }
         } else {
             return Error::CorruptedArchive;
@@ -66,7 +66,7 @@ private:
         return flag ? Error::CorruptedArchive : Error::NoError;
     }
 
-    bool digit(const std::string &s) const {
+    bool digit (const std::string &s) const {
         for (const auto &i : s) {
             if (!isdigit((unsigned char) i)) {
                 return false;

@@ -45,7 +45,7 @@ private:
         } else if (digit(s)){
             try {
                 ans = std::stoull(s);
-            } catch (std::out_of_range) {
+            } catch (const std::out_of_range &) {
                 return Error::CorruptedArchive;
             }
         } else {

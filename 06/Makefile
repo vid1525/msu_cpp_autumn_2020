@@ -1,4 +1,4 @@
-CXX_FLAGS=-O2
+CXX_FLAGS=-O2 -Wall
 CXX_VERSION=-std=c++1z
 CCXX=g++
 

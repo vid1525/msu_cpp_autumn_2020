@@ -30,18 +30,18 @@ void makeVector(std::vector<std::string> &vectorArgs, const CurArg &currentArg) 
 }
 
 template <typename CurArg, typename... Args>
-void makeVector(std::vector<std::string> &vectorArgs, const CurArg &currentArg, Args&&... args) {
+void makeVector(std::vector<std::string> &vectorArgs, const CurArg &currentArg, const Args&... args) {
     append(vectorArgs, currentArg);
-    makeVector(vectorArgs, std::forward<Args>(args)...);
+    makeVector(vectorArgs, args...);
 }
 
 template <typename... Args>
-std::string format(const std::string &formatString, Args&&... args) {
+std::string format(const std::string &formatString, const Args&... args) {
     std::vector<std::string> vectorArgs;
-    makeVector(vectorArgs, std::forward<Args>(args)...);
+    makeVector(vectorArgs, args...);
 
     std::string answer;
-    size_t len = static_cast<int64_t>(formatString.size());
+    size_t len = formatString.size();
     for (size_t i = 0; i < len; ) {
         if (formatString[i] == '{') {
             size_t j = i + 1;

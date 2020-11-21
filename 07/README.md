@@ -7,6 +7,7 @@ MAKE OPTIONS:
 
 
 VECTOR:
+
     operator[]
     push_back
     pop_back
@@ -21,6 +22,7 @@ VECTOR:
     capacity
 
 VECTOR ITERATOR:
+
     unary *
     ++
     --
@@ -35,6 +37,7 @@ VECTOR ITERATOR:
     = (lvalue VectorIterator)
 
 VECTOR REVERSE ITERATOR:
+
     unary *
     ++
     --
@@ -49,10 +52,12 @@ VECTOR REVERSE ITERATOR:
     = (lvalue VectorIterator)
 
 VECTOR ALLOCATOR:
+
     RESIZE = 2
     realloc
 
 EXCEPTIONS (VectorException):
+
     - Wrong Index -- index is out of range
     - Vector is empty
     - Different Containers' iterator

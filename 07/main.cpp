@@ -60,15 +60,12 @@ bool test3() {
     }
     Vector<int> a(b);
 
-    a.reverse();
-    for (int i = 0; i < a.size(); ++i) {
-        if (a[i] != b[b.size() - i - 1]) {
-            return false;
-        }
+    a.reserve(5);
+    if (a.size() != 10 || a.capacity() != 10) {
+        return false;
     }
-
-    b.resize(4);
-    if (b.size() != 4) {
+    a.reserve(100);
+    if (a.size() != 10 || a.capacity() != 100) {
         return false;
     }
 
@@ -211,6 +208,44 @@ bool test8() {
     }
     return true;
 }
+
+class Person {
+public:
+    Person() {}
+
+    Person(const std::string name, const int age)
+        : Name(name)
+        , Age(age) {}
+
+    bool operator !=(const Person &x) const {
+         return Name != x.Name || Age != x.Age;
+    }
+private:
+    std::string Name;
+    int Age;
+};
+
+bool test9() {
+    std::vector<Person> a;
+    Vector<Person> b;
+    a.emplace_back("first", 15);
+    a.emplace_back("second", 16);
+    a.emplace_back("third", 20);
+
+
+    b.emplace_back("first", 15);
+    b.emplace_back("second", 16);
+    b.emplace_back("third", 20);
+
+    for (int i = 0; i < 3; ++i) {
+        if (a[i] != b[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 int main() {
     std::vector<std::function<bool()>> tests {
         test1,
@@ -220,7 +255,8 @@ int main() {
         test5,
         test6,
         test7,
-        test8
+        test8,
+        test9
     };
 
     for (size_t i = 0; i < tests.size(); ++i) {

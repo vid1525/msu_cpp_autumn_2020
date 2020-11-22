@@ -214,7 +214,7 @@ public:
       , Array(nullptr) {}
 
     Vector(const int64_t size)
-      : Allocated(size < 0 ? throw VectorException("Wrong size parameter\n") : size)
+      : Allocated(size < 0 ? throw VectorException("\n") : size)
       , Size(size)
       , Array(new T[size]) {}
 
@@ -286,10 +286,13 @@ public:
         return Allocated;
     }
 
-    void reverse() noexcept {
-        for (int64_t i = 0; i < Size / 2; ++i) {
-            std::swap(Array[i], Array[Size - i - 1]);
-        }
+    void reserve(const int64_t newSize) {
+        Alloc.realloc(Size, newSize, Allocated, Array);
+    }
+
+    template <typename... Args>
+    void emplace_back(Args&&... args) {
+        this->push_back(T(std::forward<Args>(args)...));
     }
 
     void resize(const int64_t newSize) {

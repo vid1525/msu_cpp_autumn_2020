@@ -246,6 +246,33 @@ bool test9() {
     return true;
 }
 
+bool test10() {
+    Vector<int> a(10, 15);
+    Vector<int> b = a;
+
+    if (a.size() != b.size() || a.capacity() != b.capacity()) {
+        return false;
+    }
+    for (int i = 0; i < b.size(); ++i) {
+        if (b[i] != a[i]) {
+            return false;
+        }
+    }
+
+    a = Vector<int>(18, -897);
+    b = a;
+
+    if (a.size() != b.size() || a.capacity() != b.capacity()) {
+        return false;
+    }
+    for (int i = 0; i < b.size(); ++i) {
+        if (b[i] != a[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
     std::vector<std::function<bool()>> tests {
         test1,
@@ -256,7 +283,8 @@ int main() {
         test6,
         test7,
         test8,
-        test9
+        test9,
+        test10
     };
 
     for (size_t i = 0; i < tests.size(); ++i) {

@@ -243,6 +243,26 @@ public:
         delete [] Array;
     }
 
+    Vector<T>& operator =(const Vector<T> &value) {
+        delete [] Array;
+        Allocated = value.Allocated;
+        Size = value.Size;
+
+        Array = new T[Allocated];
+        copy(Array, value.Array, Size);
+        return *this;
+    }
+
+    Vector<T>& operator =(Vector<T> &&value) {
+        delete [] Array;
+        Allocated = value.Allocated;
+        Size = value.Size;
+
+        Array = value.Array;
+        value.Array = nullptr;
+        return *this;
+    }
+
     T& operator [](const int64_t index) {
         if (index < 0 || index > Size) {
             throw VectorException("Wrong index\n");
@@ -269,7 +289,7 @@ public:
         return Size == 0;
     }
 
-    void push_back(const T value) {
+    void push_back(const T &value) {
         Alloc.realloc(Size, Size + 1, Allocated, Array);
         Array[Size] = value;
         ++Size;
